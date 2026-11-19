@@ -1,6 +1,10 @@
+// TODO: 
+//  Roll Number: 202510346
+
 import java.util.Scanner;
 
 public class ATMSimulation {
+
     public static void main(String[] args) {
         // Authentication settings
         try (Scanner scanner = new Scanner(System.in)) {
@@ -9,17 +13,17 @@ public class ATMSimulation {
             int attempts = 0;
             final int MAX_ATTEMPTS = 3;
             boolean isAuthenticated = false;
-            
+
             // Account data and history array
             double balance = 1000.0;
             String[] transactionHistory = new String[50];
             int transactionCount = 0;
-            
+
             // PIN verification loop
             while (attempts < MAX_ATTEMPTS) {
                 System.out.print("Enter your PIN: ");
                 int enteredPin = scanner.nextInt();
-                
+
                 if (enteredPin == CORRECT_PIN) {
                     isAuthenticated = true;
                     System.out.println("Login successful!\n");
@@ -29,13 +33,13 @@ public class ATMSimulation {
                     System.out.println("Incorrect PIN. Attempts left: " + (MAX_ATTEMPTS - attempts));
                 }
             }
-            
+
             if (!isAuthenticated) {
                 System.out.println("Maximum attempts reached. Card blocked.");
                 scanner.close();
                 return;
             }
-            
+
             // Main ATM menu loop
             int choice = 0;
             while (choice != 5) {
@@ -47,10 +51,10 @@ public class ATMSimulation {
                 System.out.println("5. Exit");
                 System.out.print("Choose an option: ");
                 choice = scanner.nextInt();
-                
+
                 switch (choice) {
                     case 1 -> System.out.println("Current Balance: $" + balance + "\n");
-                    
+
                     case 2 -> {
                         System.out.print("Enter amount to deposit: ");
                         double depositAmount = scanner.nextDouble();
@@ -63,7 +67,7 @@ public class ATMSimulation {
                             System.out.println("Invalid amount.\n");
                         }
                     }
-                    
+
                     case 3 -> {
                         System.out.print("Enter amount to withdraw: ");
                         double withdrawAmount = scanner.nextDouble();
@@ -78,7 +82,7 @@ public class ATMSimulation {
                             System.out.println("Invalid amount.\n");
                         }
                     }
-                    
+
                     case 4 -> {
                         System.out.println("--- Transaction History ---");
                         if (transactionCount == 0) {
@@ -92,7 +96,7 @@ public class ATMSimulation {
                     }
 
                     case 5 -> System.out.println("Thank you for using the ATM. Goodbye!");
-                    
+
                     default -> System.out.println("Invalid option. Please try again.\n");
                 }
             }
